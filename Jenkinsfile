@@ -1,0 +1,84 @@
+pipeline {
+
+    agent any 
+    
+    parameters {
+      string(name: 'applicationName', defaultValue: 'Hello', description: 'Name of application to build')
+    }
+    
+
+   stages {
+     stage('Example') {
+         input {
+                message "Press OK to continue"
+                ok "OK"
+                submitter "Nkudu"
+                parameters {
+                    string(name: 'Approver', defaultValue: '', description: 'Deployment approver')
+                }
+         }
+         when {
+             beforeInput true
+             equals expected: 'Hello', actual: "${params.applicationName}" 
+             
+         }
+         options { 
+             
+             timeout(time: 3, unit: 'MINUTES') 
+              
+         }
+         steps {
+         echo "${params.applicationName} Mr. ${Approver}, thanks for approving the deployment."
+         echo "This is the real job id; ${BUILD_ID} and the job name is ${JOB_NAME}"
+         }
+       }
+    stage('send email notification') { 
+              steps { 
+                  emailext ( 
+                      subject: "Job '${env.JOB_NAME} ${env.BUILD_NUMBER}'", 
+                      body: """CDL database and code deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log. """, 
+                      to: "eze@ezelxsvr.com", 
+                     // from: "jenkinsezelxsvr.com" 
+                      )
+                    }
+        }
+	}
+     
+    post {
+           always {
+			echo 'I will always run'
+           }
+           aborted {
+            echo 'I should be aborted if the pipeline was aborted'
+           }
+           failure {
+               echo 'The pipeline had an epic fail'
+               emailext (
+                        subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                        body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+                            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+                       // recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                        to: 'ojukwu'
+                        )
+              
+            }
+           success {
+            echo 'This would run only if successful'
+           }
+           fixed {
+            echo 'The present execution passed, therefore I fixed the problem that failed the previous run'
+           }
+           regression {
+            echo 'The pipeline failed, aborted or is unstable, therefore the previous run is better than me'
+           }
+           changed {
+            //echo 'You will only see me because the present pipeline status changed from the previous one'
+            sh '''
+                echo "This will run only if the state of the Pipeline has changed 
+                  For example, the Pipeline was previously failing but is now successful 
+                  ... or the other way around :)"
+               '''
+           }
+        
+    }
+}
