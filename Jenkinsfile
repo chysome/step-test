@@ -8,6 +8,13 @@ pipeline {
     
 
    stages {
+     stage {
+	 steps {		 
+	        git branch: 'master',
+		      credentialsId: 'svc-mjen-github',
+			url: 'https://github.com/chysome/step-test.git'
+	 	}
+           }
      stage('Example') {
          input {
                 message "Press OK to continue"
