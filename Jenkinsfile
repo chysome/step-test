@@ -5,8 +5,10 @@ pipeline {
     parameters {
       string(name: 'applicationName', defaultValue: 'Hello', description: 'Name of application to build')
     }
-    
-
+   environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
    stages {
      stage('checkout scm') {
 	 steps {		 
@@ -14,7 +16,15 @@ pipeline {
 		      credentialsId: 'svc-mjen-github',
 			url: 'https://github.com/chysome/step-test.git'
 	 	}
-          }
+          }	   
+     stage('Build') {
+            steps {
+                echo "Database engine is ${DB_ENGINE}"
+                echo "DISABLE_AUTH is ${DISABLE_AUTH}"
+                sh 'printenv'
+            }
+        }
+    
      stage('Example') {
          input {
                 message "Press OK to continue"
