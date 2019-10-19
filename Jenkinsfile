@@ -34,7 +34,7 @@ pipeline {
      stage('Example') {
          input {
                 message "Press OK to continue"
-                ok "OK"
+                ok "Yes"
                 submitter "Nkudu"
                 parameters {
                     string(name: 'Approver', defaultValue: '', description: 'Deployment approver')
