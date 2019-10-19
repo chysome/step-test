@@ -25,6 +25,11 @@ pipeline {
                 sh 'printenv'
             }
         }
+     stage('log'){
+	   steps {
+		sh 'echo "foo" > a.log'
+           }
+       }
     
      stage('Example') {
          input {
@@ -64,7 +69,8 @@ pipeline {
      
     post {
            always {
-			echo 'I will always run'
+		    echo 'I will always run'
+                    archiveArtifacts artifacts: '*.log'		        
            }
            aborted {
             echo 'I should be aborted if the pipeline was aborted'
