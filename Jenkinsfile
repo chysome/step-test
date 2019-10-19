@@ -92,7 +92,7 @@ pipeline {
            changed {
             //echo 'You will only see me because the present pipeline status changed from the previous one'
             sh '''
-                echo "This will run only if the state of the Pipeline has changed 
+                  "This will run only if the state of the Pipeline has changed 
                   For example, the Pipeline was previously failing but is now successful 
                   ... or the other way around :)"
                '''
