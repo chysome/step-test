@@ -70,7 +70,7 @@ pipeline {
     post {
            always {
 		    echo 'I will always run'
-		    deleteDir()
+		    //deleteDir()
                     archiveArtifacts artifacts: '*.log'		        
            }
            aborted {
