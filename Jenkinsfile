@@ -17,16 +17,23 @@ pipeline {
 		      credentialsId: 'svc-mjen-github',
 			url: 'https://github.com/chysome/step-test.git'
 	 	}
-          }	   
+          }
+	   
+     stage("preserve build user") {
+            wrap([$class: 'BuildUser']) {
+                GET_BUILD_USER = sh ( script: 'echo "${BUILD_USER}"', returnStdout: true).trim()
+            }
+        }
      stage('Build') {
             steps {
                 echo "Database engine is ${DB_ENGINE}"
                 echo "DISABLE_AUTH is ${DISABLE_AUTH}"
 		echo "The workspace is ${WORKSPACE}"
-		echo " Approver is ${env.BUILD_USER_FIRST_NAME}"
+		echo " Approver is ${GET_BUILD_USER}"
                 sh 'printenv'
             }
         }
+       
      stage('log'){
 	   steps {
 		sh 'echo "foo" > a.log'
