@@ -55,7 +55,7 @@ pipeline {
          steps {
          echo "Good job Mr. ${Approver}, thanks for approving the deployment."
          echo "This is the real job id; ${BUILD_ID} and the job name is ${JOB_NAME}"
-         echo "The build no is ${env.BUILD_NUMBER}"
+         echo "The build no is ${env.BUILD_NUMBER} and the build user first name is ${env.BUILD_USER_FIRST_NAME}"
 	 archiveArtifacts artifacts: '*.log'
          }
        }
