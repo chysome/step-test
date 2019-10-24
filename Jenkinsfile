@@ -22,8 +22,8 @@ pipeline {
      stage("preserve build user") {
 	     steps {
                wrap([$class: 'BuildUser']) {
-                  GET_BUILD_USER = sh ( script: 'echo "${BUILD_USER}"', returnStdout: true).trim()
-               }
+		       sh 'echo "${BUILD_USER}"'
+	       }
 	     }
         }
      stage('Build') {
@@ -31,7 +31,7 @@ pipeline {
                 echo "Database engine is ${DB_ENGINE}"
                 echo "DISABLE_AUTH is ${DISABLE_AUTH}"
 		echo "The workspace is ${WORKSPACE}"
-		echo " Approver is ${GET_BUILD_USER}"
+		echo " Approver is ${BUILD_USER}"
                 sh 'printenv'
             }
         }
