@@ -3,7 +3,8 @@ pipeline {
     agent any 
     
     parameters {
-      string(name: 'applicationName', defaultValue: 'Hello', description: 'Name of application to build')
+      choice(name: 'applicationName', choices: ['Enterprise Census and Survey Enablement', 'LiMA/MCM', 'SQRA', 'CDL'], description: 'Name of application to build')
+      
     }
    environment {
         DISABLE_AUTH = 'true'
@@ -42,7 +43,7 @@ pipeline {
          }
          when {
              beforeInput true
-             equals expected: 'Hello', actual: "${params.applicationName}"
+		 expression { params.applicationName == 'Enterprise Census and Survey Enablement'}
 	     
              
          }
