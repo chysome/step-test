@@ -53,7 +53,7 @@ pipeline {
               
          }
          steps {
-         echo "${params.applicationName} Mr. ${Approver}, thanks for approving the deployment."
+         echo "Good job Mr. ${Approver}, thanks for approving the deployment."
          echo "This is the real job id; ${BUILD_ID} and the job name is ${JOB_NAME}"
          echo "The build no is ${env.BUILD_NUMBER}"
 	 archiveArtifacts artifacts: '*.log'
