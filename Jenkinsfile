@@ -23,6 +23,7 @@ pipeline {
                 echo "Database engine is ${DB_ENGINE}"
                 echo "DISABLE_AUTH is ${DISABLE_AUTH}"
 		echo "The workspace is ${WORKSPACE}"
+		echo " Approver is ${env.BUILD_USER_FIRST_NAME}"
                 sh 'printenv'
             }
         }
@@ -55,7 +56,7 @@ pipeline {
          steps {
          echo "Good job Mr. ${Approver}, thanks for approving the deployment."
          echo "This is the real job id; ${BUILD_ID} and the job name is ${JOB_NAME}"
-         echo "The build no is ${env.BUILD_NUMBER} and the build user first name is ${env.BUILD_USER_FIRST_NAME}"
+         echo "The build no is ${env.BUILD_NUMBER}"
 	 archiveArtifacts artifacts: '*.log'
          }
        }
