@@ -42,8 +42,8 @@ pipeline {
          }
          when {
              beforeInput true
-             //equals expected: 'Hello', actual: "${params.applicationName}"
-	     equals "${params.applicationName}"
+             equals expected: 'Hello', actual: "${params.applicationName}"
+	     
              
          }
          options { 
