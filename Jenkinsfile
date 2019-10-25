@@ -9,12 +9,13 @@ pipeline {
    environment {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
+	CRED = credentials('svc-mjen-github')
     }
    stages {
      stage('checkout scm') {
 	 steps {		 
 	        git branch: 'master',
-		      credentialsId: 'svc-mjen-github',
+		      credentialsId: "$CRED",
 			url: 'https://github.com/chysome/step-test.git'
 	 	}
           }
