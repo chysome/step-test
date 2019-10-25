@@ -9,7 +9,7 @@ pipeline {
    environment {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
-	SSH_CREDS = credentials('svc-mjen-github-ssh') 
+	SSH_CREDS = 'svc-mjen-github-ssh' 
 	   
     }
    stages {
@@ -18,7 +18,7 @@ pipeline {
 	        git branch: 'master',
 			credentialsId: "$SSH_CREDS",
 			url: 'https://github.com/chysome/step-test.git'
-		sh 'echo "SSH password is ${SSH_CREDS_PSW}"'
+		
 	 	}
           }
 	   
