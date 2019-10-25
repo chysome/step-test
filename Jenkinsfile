@@ -1,6 +1,8 @@
 pipeline {
 
-    agent any 
+    agent {
+    label 'sensitive'
+    }
     
     parameters {
       choice(name: 'applicationName', choices: ['Enterprise Census and Survey Enablement', 'LiMA/MCM', 'SQRA', 'CDL'], description: 'Name of application to build')
