@@ -9,7 +9,7 @@ pipeline {
    environment {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
-	CRED_PSW = credentials('svc-mjen-github-ssh')
+	CRED_PSW = 'svc-mjen-github-ssh'
 	   
     }
    stages {
