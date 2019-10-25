@@ -16,8 +16,9 @@ pipeline {
      stage('checkout scm') {
 	 steps {		 
 	        git branch: 'master',
-			credentialsId: "${SSH_CREDS_PSW}",
+			credentialsId: "$SSH_CREDS",
 			url: 'https://github.com/chysome/step-test.git'
+		sh 'echo "SSH password is ${SSH_CREDS_PSW}"'
 	 	}
           }
 	   
