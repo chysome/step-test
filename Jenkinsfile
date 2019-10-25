@@ -4,18 +4,15 @@ pipeline {
     
     parameters {
       choice(name: 'applicationName', choices: ['Enterprise Census and Survey Enablement', 'LiMA/MCM', 'SQRA', 'CDL'], description: 'Name of application to build')
-      
     }
     environment {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
 	SSH_CREDS = 'svc-mjen-github-ssh'
-    }
-	
+    }	
     options {
 	timestamps()
     }
-
     stages {
         stage('checkout scm') {
             steps {		 
@@ -23,9 +20,7 @@ pipeline {
                 credentialsId: "$SSH_CREDS",
                 url: 'https://github.com/chysome/step-test.git'
             }
-        }
-        
-        
+        }       
         stage('Build') {
             steps {
                 echo "Database engine is ${DB_ENGINE}"
@@ -33,19 +28,17 @@ pipeline {
                 echo "The workspace is ${WORKSPACE}"
                 sh 'printenv'
             }
-        }
-        
+        }        
         stage('log') {
             steps {
             sh 'echo "foo" > a.log'
             }
-        }
-        
+        }        
         stage('Example') {
             input {
                 message "Press OK to continue"
                 ok "Yes"
-                submitter "Nkudu"
+                submitter "Henry"
                 parameters {
                 string(name: 'Approver', defaultValue: '', description: 'Deployment approver')
                 }
