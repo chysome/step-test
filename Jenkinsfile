@@ -12,6 +12,10 @@ pipeline {
 	SSH_CREDS = 'svc-mjen-github-ssh' 
 	   
     }
+	
+   options {
+	timestamps()
+   }
 
    stages {
      stage('checkout scm') {
