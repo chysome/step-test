@@ -2,10 +2,6 @@ pipeline {
 
     agent any
 
-    triggers {
-        cron('H/2 * * * 6')
-    }
-    
     parameters {
       choice(name: 'applicationName', choices: ['Enterprise Census and Survey Enablement', 'LiMA/MCM', 'SQRA', 'CDL'], description: 'Name of application to build')
     }
