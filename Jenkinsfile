@@ -61,7 +61,7 @@ pipeline {
             steps { 
                 emailext ( 
                     subject: "Job '${env.JOB_NAME} ${env.BUILD_NUMBER}'", 
-                    body: """CDL database and code deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log. """, 
+                    body: """EcaSE FOCS deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log. """, 
                     to:   "eze@ezelxsvr.com" 
                 )
             }
