@@ -38,7 +38,7 @@ pipeline {
             input {
                 message "Press OK to continue"
                 ok "Yes"
-                submitter "Henry"
+                submitter "David"
                 parameters {
                 string(name: 'Approver', defaultValue: '', description: 'Deployment approver')
                 }
