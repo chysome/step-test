@@ -62,7 +62,7 @@ pipeline {
                 emailext ( 
                     subject: "Job '${env.JOB_NAME} ${env.BUILD_NUMBER}'", 
                     body: """CDL database and code deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log. """, 
-                    to:   "eze@ezelxsvr.com", 
+                    to:   "eze@ezelxsvr.com" 
                 )
             }
         }
@@ -84,7 +84,7 @@ pipeline {
                 body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
                          <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
                        // recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-                to:     'ojukwu'
+                to:     "eze@ezelxsvr.com"
             )
               
         }
