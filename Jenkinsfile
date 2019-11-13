@@ -10,9 +10,7 @@ pipeline {
         DB_ENGINE    = 'sqlite'
 	SSH_CREDS = 'svc-mjen-github-ssh'
     }	
-    options {
-	timestamps()
-    }
+    
     stages {
         stage('checkout scm') {
             steps {		 
@@ -52,7 +50,7 @@ pipeline {
             }
             steps {
                 echo "Good job Mr. ${Approver}, thanks for approving the deployment."
-                echo "This is the real job id; ${BUILD_ID} and the job name is ${JOB_NAME}"
+                echo "This is the real build number; ${BUILD_ID} and the job name is ${JOB_NAME}"
                 echo "The build no is ${env.BUILD_NUMBER}"
                 archiveArtifacts artifacts: '*.log'
             }
@@ -63,6 +61,7 @@ pipeline {
                     subject: "Job Name '${env.JOB_NAME} and Build number ${env.BUILD_NUMBER}'", 
                     body: """EcaSE FOCS deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log. """, 
                     to:   "eze@ezelxsvr.com" 
+                    from: "root@ezelxsvr.com"
                 )
             }
         }
@@ -72,7 +71,7 @@ pipeline {
         always {
 		    echo 'I will always run'
 		    deleteDir()
-        //  archiveArtifacts artifacts: '*.log'		        
+            archiveArtifacts artifacts: '*.log'		        
         }
         aborted {
             echo 'I should be aborted if the pipeline was aborted'
