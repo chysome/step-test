@@ -60,7 +60,7 @@ pipeline {
         stage('send email notification') { 
             steps { 
                 emailext ( 
-                    subject: "Job Name '${env.JOB_NAME} and Job number ${env.BUILD_NUMBER}'", 
+                    subject: "Job Name '${env.JOB_NAME} and Build number ${env.BUILD_NUMBER}'", 
                     body: """EcaSE FOCS deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log. """, 
                     to:   "eze@ezelxsvr.com" 
                 )
