@@ -59,9 +59,10 @@ pipeline {
             steps { 
                 emailext ( 
                     subject: "Job Name '${env.JOB_NAME} and Build number ${env.BUILD_NUMBER}'", 
-                    body: """EcaSE FOCS deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log. """, 
+                    body: """EcaSE FOCS deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log.
+                             $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: """, 
                     to:   "eze@ezelxsvr.com" 
-                    from: "root@ezelxsvr.com"
+                    
                 )
             }
         }
