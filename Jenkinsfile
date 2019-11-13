@@ -59,8 +59,7 @@ pipeline {
             steps { 
                 emailext ( 
                     subject: "Job Name '${env.JOB_NAME} and Build number ${env.BUILD_NUMBER}'", 
-                    body: """EcaSE FOCS deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log.
-                             Build # $BUILD_NUMBER - $BUILD_STATUS: """, 
+                    body: """EcaSE FOCS deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log.""", 
                     to:   "eze@ezelxsvr.com" 
                     
                 )
@@ -71,7 +70,7 @@ pipeline {
     post {
         always {
 		    echo 'I will always run'
-		    deleteDir()
+		    //deleteDir()
             archiveArtifacts artifacts: '*.log'		        
         }
         aborted {
