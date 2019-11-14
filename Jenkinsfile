@@ -92,7 +92,7 @@ pipeline {
             emailext (
                 subject: "For your information"
                 body: """The "${currentBuild.fullDisplayName}" has succeeded"""
-                to: "eze@ezelxsvr.com"
+                 to: "eze@ezelxsvr.com"               
             )
         }
         fixed {
