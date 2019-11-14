@@ -90,9 +90,9 @@ pipeline {
         success {
             echo 'This would run only if successful'
             emailext (
-                subject: "For your information"
-                body: """The "${currentBuild.fullDisplayName}" has succeeded"""
-                 to: "eze@ezelxsvr.com"               
+                subject: "For your information",
+                body: "${currentBuild.fullDisplayName} has succeeded",
+                to: "eze@ezelxsvr.com"               
             )
         }
         fixed {
