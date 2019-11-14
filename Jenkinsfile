@@ -52,14 +52,15 @@ pipeline {
                 echo "Good job Mr. ${Approver}, thanks for approving the deployment."
                 echo "This is the real build number; ${BUILD_ID} and the job name is ${JOB_NAME}"
                 echo "The build no is ${env.BUILD_NUMBER}"
-                //archiveArtifacts artifacts: '*.log'
+                
             }
         }
         stage('send email notification') { 
             steps { 
                 emailext ( 
                     subject: "Job Name '${env.JOB_NAME} and Build number ${env.BUILD_NUMBER}'", 
-                    body: """EcaSE FOCS deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log.""", 
+                    body: """EcaSE FOCS deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log.
+                             ${currentBuild.fullDisplayName} has succeeded""", 
                     to:   "eze@ezelxsvr.com" 
                     
                 )
