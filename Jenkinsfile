@@ -59,8 +59,7 @@ pipeline {
             steps { 
                 emailext ( 
                     subject: "Job Name '${env.JOB_NAME} and Build number ${env.BUILD_NUMBER}'", 
-                    body: """EcaSE FOCS deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log.
-                             ${currentBuild.fullDisplayName} has succeeded""", 
+                    body: """EcaSE FOCS deployment is in Progress, Check console output at "${env.BUILD_URL}" and monitor the console log""", 
                     to:   "eze@ezelxsvr.com" 
                     
                 )
@@ -90,6 +89,11 @@ pipeline {
         }
         success {
             echo 'This would run only if successful'
+            emailext (
+                subject: "For your information"
+                body: "${currentBuild.fullDisplayName} has succeeded"
+                to: "eze@ezelxsvr.com"
+            )
         }
         fixed {
             echo 'The present execution passed, therefore I fixed the problem that failed the previous run'
