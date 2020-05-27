@@ -15,7 +15,7 @@ pipeline {
             steps {
 		    withCredentials([sshUserPrivateKey(credentialsId: 'svc-mjen-github-ssh', keyFileVariable: 'private-key', passwordVariable: '', usernameVariable: '')]) {
 			    git branch: 'master',
-				    credentialsId: '${private-key}',
+				    credentialsId: ${private-key},
                     		url: 'git@github.com:chysome/step-test.git' 
 		    }
 	    }
