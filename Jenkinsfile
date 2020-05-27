@@ -15,7 +15,7 @@ pipeline {
             steps {		 
                 git branch: 'master',
 		    credentialsId: 'svc-mjen-github-ssh',
-                    url: 'ssh://git@github.com:chysome/step-test.git' 
+                    url: 'git@github.com:chysome/step-test.git' 
             }
         }       
 	    
