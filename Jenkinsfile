@@ -13,12 +13,16 @@ pipeline {
 	    
 	stage('checkout scm') {
             steps {
-		    withCredentials([sshUserPrivateKey(credentialsId: 'svc-mjen-github-ssh', keyFileVariable: 'private-key', passwordVariable: '', usernameVariable: '')]) {
+		    withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'svc-mjen-github-ssh', \
+                                             keyFileVariable: 'PRIVATE_KEY')]) 
+		       {
 			    git branch: 'master',
-				    credentialsId: "${private-key}",
-				    url: 'git@github.com:chysome/step-test.git' 
-		    }
-	    }
+		            	credentialsId: '$PRIVATE_KEY',
+                    		url: 'git@github.com:chysome/step-test.git' 
+ 
+		       }    
+		   
+	          }
         }
 	    
         stage('Build') {
