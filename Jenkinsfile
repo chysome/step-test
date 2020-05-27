@@ -16,8 +16,8 @@ pipeline {
         stage('checkout scm') {
             steps {		 
                 git branch: 'master',
-		credentialsId: "${SSH_CREDS}",
-                url: 'https://github.com/chysome/step-test.git'
+		credentialsId: 'svc-mjen-github-ssh',
+                url: 'ssh://git@github.com:chysome/step-test.git'
             }
         }       
         stage('Build') {
