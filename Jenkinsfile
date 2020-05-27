@@ -12,11 +12,13 @@ pipeline {
     stages {    
 	    
 	stage('checkout scm') {
-            steps {		 
-                git branch: 'master',
-		    credentialsId: 'svc-mjen-github-ssh',
-                    url: 'git@github.com:chysome/step-test.git' 
-            }
+            steps {
+		    withCredentials([sshUserPrivateKey(credentialsId: '', keyFileVariable: 'svc-mjen-github-ssh', passwordVariable: '', usernameVariable: '')]) {
+			    git branch: 'master',
+		    		credentialsId: '$svc-mjen-github-ssh',
+                    		url: 'git@github.com:chysome/step-test.git' 
+		    }
+	    }
         }
 	    
         stage('Build') {
