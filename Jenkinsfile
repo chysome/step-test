@@ -8,8 +8,7 @@ pipeline {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
 	//SSH_CREDS = credentials('svc-mjen-github-ssh')
-    }	
-    
+    }
     stages {    
 	    
         stage('Build') {
