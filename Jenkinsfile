@@ -1,5 +1,7 @@
 pipeline {
     agent any
+	
+    options { retry(3) }
 
     parameters {
       choice(name: 'applicationName', choices: ['Enterprise Census and Survey Enablement', 'LiMA/MCM', 'SQRA', 'CDL'], description: 'Name of application to build')
@@ -13,10 +15,10 @@ pipeline {
 	    
 	stage('checkout scm') {
             steps {
-		    withCredentials([usernameColonPassword(credentialsId: 'svc-mjen-github', variable: 'pass')]) { 
+		    withCredentials(bindings[sshUserPrivateKey(credentialsId: 'svc-mjen-github-ssh', keyFileVariable: 'SSH_KEY_FOR_DEPLOY')]) { 
 		       
 			    git branch: 'master',
-		            	credentialsId: '$pass',
+		            	credentialsId: '$SSH_KEY_FOR_DEPLOY',
                     		url: 'https://github.com/chysome/step-test.git' 
  
 		       }    
