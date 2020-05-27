@@ -13,9 +13,9 @@ pipeline {
 	    
 	stage('checkout scm') {
             steps {
-		    withCredentials([sshUserPrivateKey(credentialsId: '', keyFileVariable: 'svc-mjen-github-ssh', passwordVariable: '', usernameVariable: '')]) {
+		    withCredentials([sshUserPrivateKey(credentialsId: 'svc-mjen-github-ssh', keyFileVariable: 'private-key', passwordVariable: '', usernameVariable: '')]) {
 			    git branch: 'master',
-		    		credentialsId: '$svc-mjen-github-ssh',
+		    		credentialsId: '$private-key',
                     		url: 'git@github.com:chysome/step-test.git' 
 		    }
 	    }
