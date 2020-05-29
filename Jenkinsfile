@@ -11,8 +11,7 @@ pipeline {
         DB_ENGINE    = 'sqlite'
 	//SSH_CREDS = credentials('svc-mjen-github-ssh')
     }
-    stages {    
-	    
+    stages {    	    
 	//stage('checkout scm') {
        //     steps {
 	//	    withCredentials(bindings[sshUserPrivateKey(credentialsId: 'svc-mjen-github-ssh', keyFileVariable: 'SSH_KEY_FOR_DEPLOY')]) { 
