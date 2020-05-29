@@ -58,7 +58,7 @@ pipeline {
             }
             steps {
                 echo "Good job Mr. ${Approver}, thanks for approving the deployment."
-                echo "This is the real build number; ${BUILD_ID} and the job name is ${JOB_NAME}"
+                echo "This is the real build number; ${env.BUILD_ID} and the job name is ${env.JOB_NAME} and ${env.DB_ENGINE}"
                 echo "The build no is ${env.BUILD_NUMBER}"
                 
             }
