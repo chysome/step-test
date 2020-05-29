@@ -13,18 +13,18 @@ pipeline {
     }
     stages {    
 	    
-	stage('checkout scm') {
-            steps {
-		    withCredentials(bindings[sshUserPrivateKey(credentialsId: 'svc-mjen-github-ssh', keyFileVariable: 'SSH_KEY_FOR_DEPLOY')]) { 
+	//stage('checkout scm') {
+       //     steps {
+	//	    withCredentials(bindings[sshUserPrivateKey(credentialsId: 'svc-mjen-github-ssh', keyFileVariable: 'SSH_KEY_FOR_DEPLOY')]) { 
 		       
-			    git branch: 'master',
-		            	credentialsId: '$SSH_KEY_FOR_DEPLOY',
-                    		url: 'https://github.com/chysome/step-test.git' 
+	//		    git branch: 'master',
+	//	            	credentialsId: '$SSH_KEY_FOR_DEPLOY',
+       //             		url: 'https://github.com/chysome/step-test.git' 
  
-		       }    
+	//	       }    
 		   
-	          }
-        }
+	//          }
+     //   }
 	    
         stage('Build') {
 		
