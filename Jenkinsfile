@@ -49,7 +49,7 @@ pipeline {
                 }
             }
             when {
-                beforeInput true
+                beforeInput false
 		        expression { params.applicationName == 'Enterprise Census and Survey Enablement'}            
             }
             options {
