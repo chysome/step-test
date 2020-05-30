@@ -1,6 +1,12 @@
 pipeline {
     agent any
 	
+	tools{
+		
+	    maven 'Maven 3.6.3'
+	    jdk  'jdk8'
+	}
+	
     options { retry(3) }
 
     parameters {
@@ -11,19 +17,17 @@ pipeline {
         DB_ENGINE    = 'sqlite'
 	//SSH_CREDS = credentials('svc-mjen-github-ssh')
     }
-    stages {    	    
-	//stage('checkout scm') {
-       //     steps {
-	//	    withCredentials(bindings[sshUserPrivateKey(credentialsId: 'svc-mjen-github-ssh', keyFileVariable: 'SSH_KEY_FOR_DEPLOY')]) { 
-		       
-	//		    git branch: 'master',
-	//	            	credentialsId: '$SSH_KEY_FOR_DEPLOY',
-       //             		url: 'https://github.com/chysome/step-test.git' 
- 
-	//	       }    
-		   
-	//          }
-     //   }
+    stages {    
+	    
+	stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "MAVEN_HOME = ${MAVEN_HOME}"
+                ''' 
+            }
+        }
+	
 	    
         stage('Build') {
 		
