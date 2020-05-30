@@ -4,7 +4,7 @@ pipeline {
     options { retry(3) }
 
     parameters {
-      choice(name: 'applicationName', choices: ['LiMA?MCM', 'Enterprise Census and Survey Enablement', 'SQRA', 'CDL'], description: 'Name of application to build')
+      choice(name: 'applicationName', choices: ['LiMA/MCM', 'Enterprise Census and Survey Enablement', 'SQRA', 'CDL'], description: 'Name of application to build')
     }
     environment {
         DISABLE_AUTH = 'true'
