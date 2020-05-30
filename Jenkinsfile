@@ -9,8 +9,9 @@ pipeline {
     options {
     // Only keep the 10 most recent builds
     buildDiscarder(logRotator(numToKeepStr:'10'))
+    retry(3) 
   }
-    options { retry(3) }
+   
 
     parameters {
       choice(name: 'applicationName', choices: ['LiMA/MCM', 'Enterprise Census and Survey Enablement', 'SQRA', 'CDL'], description: 'Name of application to build')
