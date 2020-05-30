@@ -6,7 +6,10 @@ pipeline {
 	    maven 'maven'
 	    jdk  'jdk'
 	}
-	
+    options {
+    // Only keep the 10 most recent builds
+    buildDiscarder(logRotator(numToKeepStr:'10'))
+  }
     options { retry(3) }
 
     parameters {
