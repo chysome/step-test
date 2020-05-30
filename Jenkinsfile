@@ -3,8 +3,8 @@ pipeline {
 	
 	tools{
 		
-	    maven 'Maven 3.6.3'
-	    jdk  'jdk8'
+	    maven 'maven 3.6.3'
+	    jdk  'jdk'
 	}
 	
     options { retry(3) }
